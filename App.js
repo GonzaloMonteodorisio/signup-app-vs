@@ -10,10 +10,13 @@ import { storeData } from './StorageData';
 import Routes from './components/AppRoutes';
 
 import './config/i18next-config';
+// import i18n from './config/i18n';
 import { useTranslation } from 'react-i18next';
+// console.info('i18n: ', i18n);
 
 SplashScreen.preventAutoHideAsync()
   .catch(console.warn); // it's good to explicitly catch and inspect any error
+
 
 export default function App() {
   const {t, i18n} = useTranslation();

@@ -91,24 +91,24 @@ export async function searchUsers(filter = '', order = '', page = 1, limit = 5) 
   }
 }
 
-export const signOut = async () => {
-  try {
-    const token = await AsyncStorage.getItem('token');
-    if (!token) {
-      const res = await client.post('/signout', {
-        headers: {
-          Authorization: `JWT ${token}`
-        }
-      });
-    }
+// export const signOut = async () => {
+//   try {
+//     const token = await AsyncStorage.getItem('token');
+//     if (!token) {
+//       const res = await client.post('/signout', {
+//         headers: {
+//           Authorization: `JWT ${token}`
+//         }
+//       });
+//     }
 
-    if (res.data.success) {
-      await AsyncStorage.removeItem('token');
-      return true;
-    }
-    return false;
-  } catch (error) {
-    console.info('Error signOut method', error.message);
-    return false;
-  }
-}
+//     if (res.data.success) {
+//       await AsyncStorage.removeItem('token');
+//       return true;
+//     }
+//     return false;
+//   } catch (error) {
+//     console.info('Error signOut method', error.message);
+//     return false;
+//   }
+// }
