@@ -15,7 +15,8 @@ i18next
           "email-placeholder": "algo{{ extension }}",
           "login-button": "Enviar código",
           "code-input": "Inserte Código recibido",
-          "resend-code": "Reenviar código"
+          "resend-code": "Reenviar código",
+          "sign-out": "Cerrar sesión"
         }
       },
       en: {
@@ -24,7 +25,8 @@ i18next
           "email-placeholder": "something{{ extension }}",
           "login-button": "Send code",
           "code-input": "insert received code",
-          "resend-code": "Resend code"
+          "resend-code": "Resend code",
+          "sign-out": "Sign out"
         }
       }
     }

@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from './api';
 
 export async function login(email) {
@@ -87,5 +88,27 @@ export async function searchUsers(filter = '', order = '', page = 1, limit = 5) 
   } catch (err) {
     console.info('Lib searchUsers error: ', err.status, err.message);
     throw err;
+  }
+}
+
+export const signOut = async () => {
+  try {
+    const token = await AsyncStorage.getItem('token');
+    if (!token) {
+      const res = await client.post('/signout', {
+        headers: {
+          Authorization: `JWT ${token}`
+        }
+      });
+    }
+
+    if (res.data.success) {
+      await AsyncStorage.removeItem('token');
+      return true;
+    }
+    return false;
+  } catch (error) {
+    console.info('Error signOut method', error.message);
+    return false;
   }
 }
