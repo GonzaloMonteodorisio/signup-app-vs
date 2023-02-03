@@ -17,6 +17,7 @@ import Text from '../../components/Text';
 import Toast from '../../components/Toast';
 
 import styles from './styles';
+import { t } from 'i18next';
 
 function LoginScreen() {
   const navigation = useNavigation();
@@ -65,10 +66,10 @@ function LoginScreen() {
                 value={email}
                 onChange={setEmail}
                 keyboardType="email-address"
-                placeholder="algo@gmail.com"
+                placeholder={t("email-placeholder",{ extension: '@gmail.com' })}
               />
               <Button
-                title="Enviar código"
+                title={t("login-button")}
                 onPress={() => onSendCode()}
                 backgroundColor="#ffcc00"
                 textColor="#000000"
@@ -102,7 +103,7 @@ function LoginScreen() {
             onPress={() => onSendCode()}
             linkLine
           >
-            Reenviar Código
+            {t("resend-code")}
           </Text>
         )}
       </View>

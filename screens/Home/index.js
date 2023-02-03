@@ -10,6 +10,7 @@ import { View } from 'react-native';
 import Text from '../../components/Text';
 
 import styles from './styles';
+import { t } from 'i18next';
 
 function HomeScreen({ onLayout }) {
   const context = useContext(AuthContext);
@@ -21,7 +22,7 @@ function HomeScreen({ onLayout }) {
 
   return (
     <View style={styles.container} onLayout={onLayout}>
-      <Text>Home Screen</Text>
+      <Text>{t("screen")}</Text>
     </View>
   );
 }
