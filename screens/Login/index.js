@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import { StatusBar } from 'expo-status-bar';
-import { View, Alert, Platform } from 'react-native';
+import { View } from 'react-native';
 
 import * as LocalAuthentication from 'expo-local-authentication';
 
@@ -23,17 +23,25 @@ import Toast from '../../components/Toast';
 import styles from './styles';
 import { t } from 'i18next';
 
-import ButtonComponent from '../../components/Button';
-
 console.info('LocalAuthentication: ', LocalAuthentication);
 
 function LoginScreen() {
   const navigation = useNavigation();
+  const [isBiometricSupported, setIsBiometricSupported] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
   const [sendCode, setSendCode] = useState(false);
   const [showError, setShowError] = useState('');
   const context = useContext(AuthContext);
+
+  useEffect(() => {
+    (async () => {
+      const compatible = await LocalAuthentication.hasHardwareAsync();
+      setIsBiometricSupported(compatible);
+      console.info('isBiometricSupported: ', isBiometricSupported);
+    })();
+  });
 
   async function onLogin() {
     try {
@@ -44,6 +52,7 @@ function LoginScreen() {
       console.info('logged: ', logged);
       context.setToken(logged.jwt);
       return navigation.navigate('Home');
+      console.info('token: ', token);
     } catch (err) {
       console.info('Error login: ', err);
       return setShowError('E-Mail o código no válidos');
@@ -62,29 +71,6 @@ function LoginScreen() {
       return null;
     }
   }
-
-  const LoginWithBiometry = async () => {
-    const biometryType = await LocalAuthentication.getSupportedBiometryTypeAsync();
-  
-    if (biometryType === LocalAuthentication.BiometryType.None) {
-      Alert.alert('Dispositivo no compatible', 'Su dispositivo no tiene capacidades de autenticación biométrica');
-      return;
-    }
-  
-    try {
-      const result = await LocalAuthentication.authenticateAsync({
-        promptMessage: 'Autenticación biométrica requerida',
-      });
-  
-      if (result.success) {
-        Alert.alert('Autenticación exitosa', 'Ha iniciado sesión con éxito');
-      } else {
-        Alert.alert('Autenticación fallida', 'Intente nuevamente');
-      }
-    } catch (e) {
-      Alert.alert('Error', 'Ha ocurrido un error, inténtelo nuevamente');
-    }
-  };
 
   return (
     <View style={styles.container}>
@@ -110,24 +96,16 @@ function LoginScreen() {
             </>
           )}
 
-          { !sendCode && (
-            <ButtonComponent
-              title='Loguearse con biometría'
-              onPress={LoginWithBiometry}
-            >
-            </ButtonComponent>
-          )}
-
           { sendCode && (
             <>
               <Input
-                label="Inserte Código recibido"
+                label={`${t("login-label")}`}
                 value={code}
                 onChange={setCode}
                 placeholder="FG778A"
               />
               <Button
-                title="Ingresar"
+                title={`${t("login-button-title")}`}
                 onPress={() => onLogin()}
                 backgroundColor="#ffcc00"
                 textColor="#000000"

@@ -17,7 +17,12 @@ i18next
           "login-button": "Enviar código",
           "code-input": "Inserte Código recibido",
           "resend-code": "Reenviar código",
-          "sign-out": "Cerrar sesión"
+          "sign-out": "Cerrar sesión",
+          "authenticated-message": "Autenticarse a través del PIN de seguridad",
+          "authenticated-label": "Ingresar PIN",
+          "login-label": "Inserte código recibido",
+          "login-button-title": "Ingresar",
+          "logged-out-message": "desloguado"
         }
       },
       en: {
@@ -27,7 +32,12 @@ i18next
           "login-button": "Send code",
           "code-input": "insert received code",
           "resend-code": "Resend code",
-          "sign-out": "Sign out"
+          "sign-out": "Sign out",
+          "authenticated-message": "Authenticate via security PIN",
+          "authenticated-label": "Enter PIN",
+          "login-label": "Insert received code",
+          "login-button-title": "Enter",
+          "logged-out-message": "logged-out"
         }
       }
     }

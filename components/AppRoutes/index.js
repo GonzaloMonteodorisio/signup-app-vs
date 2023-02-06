@@ -4,13 +4,15 @@ import React, {
 } from 'react';
 
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer, useNavigation, useIsFocused } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { enableScreens } from 'react-native-screens';
 
 import AuthContext from '../../providers/AuthContext';
 
 import LoginScreen from '../../screens/Login';
 import HomeScreen from '../../screens/Home';
+import AuthScreen from '../../screens/AuthScreen';
+import MyApp from '../../screens/MyApp';
 
 const Stack = createStackNavigator();
 
@@ -23,31 +25,47 @@ export const routesDefinition = [
     name: 'Home',
     component: HomeScreen,
   },
+  {
+    name: 'Auth',
+    component: AuthScreen,
+  },
+  {
+    name: 'MyApp',
+    component: MyApp
+  }
 ];
 
 function AppRoutes() {
-  // const isFocused = useIsFocused();
   const navigation = useNavigation();
   const context = useContext(AuthContext);
   const {
     logged,
+    isAuthenticated
   } = context;
 
+  console.info('isAuthenticated-AppRoutes: ', isAuthenticated);
+
   useEffect(() => {
-    if (logged) {
+    if (logged && isAuthenticated) {
       navigation.navigate('Home');
-    } else {
+    } else if (isAuthenticated) {
       navigation.navigate('Login');
+    } else {
+      navigation.navigate('Auth');
     }
-  }, [logged, /* isFocused */]);
+  }, [logged, isAuthenticated]);
 
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Home">
+    <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="MyApp">
       {routesDefinition.map((route) => (
         <Stack.Screen
           name={route.name}
           component={route.component}
           key={`route-${route.name}`}
+          options = {{
+            logged,
+            isAuthenticated
+          }}
         />
       ))}
     </Stack.Navigator>

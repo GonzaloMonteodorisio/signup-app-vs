@@ -6,10 +6,10 @@ import {
 
 import styles from './styles';
 
-import appIcon from '../../assets/fuego.png';
+import appIcon from '../../assets/ola.png';
 
 
-function Loading( ) {
+function Loading() {
   return (
     <View style={styles.container}>
       <Image
