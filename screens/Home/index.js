@@ -13,6 +13,7 @@ import { t } from 'i18next';
 import ButtonComponent from '../../components/Button';
 import { clearAllLocalStorage } from '../../StorageData';
 import { useNavigation } from '@react-navigation/native';
+import TextComponent from '../../components/Text';
 
 function HomeScreen({ onLayout }) {
   const context = useContext(AuthContext);
@@ -22,6 +23,7 @@ function HomeScreen({ onLayout }) {
   const {
     userData,
   } = context;
+  console.info('userData-Home: ', userData);
 
   if (!userData) return null;
 
@@ -36,6 +38,9 @@ function HomeScreen({ onLayout }) {
   return (
     <View style={styles.container} onLayout={onLayout}>
       <Text>{t("screen")}</Text>
+      <View>
+        <TextComponent>{`${t("user-label")}`}: {userData.firstName} {userData.lastName}</TextComponent>
+      </View>
       <ButtonComponent
         title={t('sign-out')}
         onPress={logout}

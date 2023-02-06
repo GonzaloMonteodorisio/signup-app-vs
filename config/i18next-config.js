@@ -22,7 +22,8 @@ i18next
           "authenticated-label": "Ingresar PIN",
           "login-label": "Inserte código recibido",
           "login-button-title": "Ingresar",
-          "logged-out-message": "desloguado"
+          "logged-out-message": "desloguado",
+          "user-label": "Usuario"
         }
       },
       en: {
@@ -37,7 +38,8 @@ i18next
           "authenticated-label": "Enter PIN",
           "login-label": "Insert received code",
           "login-button-title": "Enter",
-          "logged-out-message": "logged-out"
+          "logged-out-message": "logged-out",
+          "user-label": "User"
         }
       }
     }
