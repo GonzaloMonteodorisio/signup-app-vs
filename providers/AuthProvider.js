@@ -9,8 +9,8 @@ import NetInfo from '@react-native-community/netinfo';
 import { AuthProvider } from './AuthContext';
 
 import {
-  getData,
   storeData,
+  getData,
   sessionLocalKey,
   clearAllLocalStorage,
 } from '../StorageData';
@@ -68,14 +68,16 @@ function AppProviderContext({ children }) {
 
       const localToken = await getData(sessionLocalKey);
       if (localToken) {
+        console.info('localToken: ', localToken);
         setLogged(true);
         const decoded = jwtDecode(localToken.jwt);
         await setUserData({
           ...decoded,
           _id: decoded.uuid,
           displayName: `${decoded.firstName || 'NoName'} ${decoded.lastName || 'NoLast'}`,
+          profilePhoto: decoded.profilePhoto || 'https://reactnative.dev/img/tiny_logo.png'
         });
-        console.info('USER DATA: ', decoded);
+        console.info('USER DATA - AuthProvider: ', decoded);
       }
       await storeData('end', 'initStatus');
     } catch (err) {

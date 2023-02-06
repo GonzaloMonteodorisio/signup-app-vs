@@ -5,7 +5,7 @@ import React, {
 
 import AuthContext from '../../providers/AuthContext';
 
-import { View } from 'react-native';
+import { Image, View } from 'react-native';
 import Text from '../../components/Text';
 
 import styles from './styles';
@@ -40,6 +40,12 @@ function HomeScreen({ onLayout }) {
       <Text>{t("screen")}</Text>
       <View>
         <TextComponent>{`${t("user-label")}`}: {userData.firstName} {userData.lastName}</TextComponent>
+        <Image 
+          style={styles.userImage}
+          source={{
+            uri: userData.profilePhoto || 'https://reactnative.dev/img/tiny_logo.png'
+          }}
+        />
       </View>
       <ButtonComponent
         title={t('sign-out')}

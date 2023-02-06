@@ -8,6 +8,10 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
   },
+  userImage: {
+    width: 50,
+    height: 50,
+  },
   formData: {
     width: '100%',
     flexDirection: 'column',
