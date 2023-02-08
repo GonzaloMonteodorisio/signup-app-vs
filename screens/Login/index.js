@@ -52,7 +52,6 @@ function LoginScreen() {
       console.info('logged: ', logged);
       context.setToken(logged.jwt);
       return navigation.navigate('Home');
-      console.info('token: ', token);
     } catch (err) {
       console.info('Error login: ', err);
       return setShowError('E-Mail o código no válidos');

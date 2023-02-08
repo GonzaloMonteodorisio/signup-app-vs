@@ -9,10 +9,8 @@ import TextComponent from "../../components/Text";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 
-function AuthScreen({ onAuthenticate, options }) {
+function AuthScreen() {
   const navigation = useNavigation();
-  console.info('onAuthenticate: ', onAuthenticate);
-  console.info('options: ', options);
 
   useEffect(() => {
     async function authenticate() {
@@ -29,6 +27,7 @@ function AuthScreen({ onAuthenticate, options }) {
 
   return (
     <View style={styles.container}>
+      <Text style={{color: '#fff'}}>Auth Screen</Text>
     </View>
   );
 }

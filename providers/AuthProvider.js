@@ -18,6 +18,7 @@ import {
 function AppProviderContext({ children }) {
   const [logged, setLogged] = useState(false);
   const [userData, setUserData] = useState();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [networkStatus, setNetworkStatus] = useState({
     connected: false,
     connectedType: null,
@@ -128,6 +129,7 @@ function AppProviderContext({ children }) {
           storeData({ jwt: value }, sessionLocalKey);
           getLocalToken();
         },
+        isAuthenticated,
         logout,
       }}
     >
