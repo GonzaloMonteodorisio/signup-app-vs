@@ -29,6 +29,11 @@
     },
     "web": {
       "favicon": "./assets/ola.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f9a82944-a6c7-4be8-a7c9-1d17b8a006e8"
+      }
     }
   }
 }
