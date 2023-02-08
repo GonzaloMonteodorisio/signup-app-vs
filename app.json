@@ -24,10 +24,22 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/ola.png",
         "backgroundColor": "#0B1626"
-      }
+      },
+      "minSdkVersion": 8,
+      "package": "com.gonzalomonteodorisio.onboardingapp"
     },
     "web": {
       "favicon": "./assets/ola.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f9a82944-a6c7-4be8-a7c9-1d17b8a006e8"
+      }
+    },
+    "permissions": [
+      "USE_FINGERPRINT",
+      "USE_BIOMETRIC",
+      "BODY_SENSORS"
+    ]
   }
 }
