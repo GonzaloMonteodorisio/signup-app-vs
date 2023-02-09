@@ -24,7 +24,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/ola.png",
         "backgroundColor": "#0B1626"
-      }
+      },
+      "package": "com.gonzalomonteodorisio.onboardingapp"
     },
     "web": {
       "favicon": "./assets/ola.png"
