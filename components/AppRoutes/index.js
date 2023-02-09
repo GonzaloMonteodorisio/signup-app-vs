@@ -5,6 +5,7 @@ import React, {
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import * as LocalAuthentication from 'expo-local-authentication';
 import { enableScreens } from 'react-native-screens';
 
 import AuthContext from '../../providers/AuthContext';
@@ -13,6 +14,7 @@ import LoginScreen from '../../screens/Login';
 import HomeScreen from '../../screens/Home';
 import AuthScreen from '../../screens/AuthScreen';
 import MyApp from '../../screens/MyApp';
+import { Alert } from 'react-native';
 
 const Stack = createStackNavigator();
 
@@ -35,7 +37,21 @@ export const routesDefinition = [
   }
 ];
 
+const loginAuthBiometric = async () => {
+  try {
+    const result = await LocalAuthentication.authenticateAsync();
+    if (result.success) {
+      Alert.alert('Autenticación exitosa', 'Has iniciado sesión con biometría.');
+    } else {
+      Alert.alert('Autenticación biometrica fallida', 'No se encuentra activada, o se produjo un error.');
+    }
+  } catch (e) {
+    Alert.alert('Error', e.message);
+  }
+};
+
 function AppRoutes() {
+  enableScreens();
   const navigation = useNavigation();
   const context = useContext(AuthContext);
   const {
@@ -43,10 +59,11 @@ function AppRoutes() {
     // isAuthenticated
   } = context;
 
-  // console.info('isAuthenticated-AppRoutes: ', isAuthenticated);
+  console.info('logged-AppRoutes', logged);
 
   useEffect(() => {
     if (logged) {
+      loginAuthBiometric();
       navigation.navigate('Home');
     } else {
       navigation.navigate('Login');
