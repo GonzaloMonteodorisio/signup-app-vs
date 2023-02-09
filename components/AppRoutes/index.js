@@ -40,20 +40,28 @@ function AppRoutes() {
   const context = useContext(AuthContext);
   const {
     logged,
-    isAuthenticated
+    // isAuthenticated
   } = context;
 
-  console.info('isAuthenticated-AppRoutes: ', isAuthenticated);
+  // console.info('isAuthenticated-AppRoutes: ', isAuthenticated);
 
   useEffect(() => {
-    if (logged && isAuthenticated) {
+    if (logged) {
       navigation.navigate('Home');
-    } else if (isAuthenticated) {
-      navigation.navigate('Login');
     } else {
-      navigation.navigate('Auth');
+      navigation.navigate('Login');
     }
-  }, [logged, isAuthenticated]);
+  }, [logged]);
+
+  // useEffect(() => {
+  //   if (logged && isAuthenticated) {
+  //     navigation.navigate('Home');
+  //   } else if (isAuthenticated) {
+  //     navigation.navigate('Login');
+  //   } else {
+  //     navigation.navigate('Auth');
+  //   }
+  // }, [logged, isAuthenticated]);
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="MyApp">
@@ -64,7 +72,7 @@ function AppRoutes() {
           key={`route-${route.name}`}
           options = {{
             logged,
-            isAuthenticated
+            // isAuthenticated
           }}
         />
       ))}
