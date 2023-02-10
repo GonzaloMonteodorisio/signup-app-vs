@@ -18,10 +18,14 @@ import {
   getUserData,
   updateUser,
 } from '../../libs/users';
-import styles from './styles';
+import { useNavigation } from '@react-navigation/native';
 
 // import SocialNetworks from './components/SocialNetworks';
 import UserBasicInformation from './components/UserBasicInformation';
+import ButtonComponent from '../../components/Button';
+import { t } from 'i18next';
+import { clearAllLocalStorage } from '../../StorageData';
+import styles from './styles';
 
 function UserProfile({
   route,
@@ -29,15 +33,18 @@ function UserProfile({
   const context = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState();
   const [loading, setLoading] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const navigation = useNavigation();
 
   const {
     userData,
     setUserData,
   } = context;
 
+  console.info('route-UserProfile: ', route);
   const { _id } = route.params;
 
-  console.info('route-UserProfile: ', route);
   console.info('context-UserProfile: ', context);
 
   async function fetchUserInfo() {
@@ -104,6 +111,14 @@ function UserProfile({
     }
   }
 
+  async function logout() {
+    clearAllLocalStorage();
+    setIsLoggedIn(false);
+    // setUserData();
+    console.info(`${t("logged-out-message")}`);
+    navigation.navigate('Login');
+  }
+
   useEffect(() => {
     fetchUserInfo();
   }, [_id]);
@@ -136,6 +151,14 @@ function UserProfile({
           lastName={userInfo.lastName}
           onConfirm={(sn, value) => onChangeUserInfo(sn, value, true)}
           editable={!_id}
+        />
+        <ButtonComponent
+          title={t('sign-out')}
+          onPress={logout}
+          width='50%'
+          fontSize={20}
+          textColor='#000'
+          bold
         />
       </View>
       {loading && <Loading />}

@@ -14,8 +14,6 @@ import * as LocalAuthentication from 'expo-local-authentication';
 import AuthContext from '../../providers/AuthContext';
 
 import LoginScreen from '../../screens/Login';
-import HomeScreen from '../../screens/Home';
-import AuthScreen from '../../screens/AuthScreen';
 import UserProfile from '../../screens/UserProfile';
 import MyApp from '../../screens/MyApp';
 
@@ -26,14 +24,6 @@ export const routesDefinition = [
   {
     name: 'Login',
     component: LoginScreen,
-  },
-  {
-    name: 'Home',
-    component: HomeScreen,
-  },
-  {
-    name: 'Auth',
-    component: AuthScreen,
   },
   {
     name: 'MyApp',
@@ -79,16 +69,6 @@ function AppRoutes() {
       navigation.navigate('Login');
     }
   }, [logged]);
-
-  // useEffect(() => {
-  //   if (logged && isAuthenticated) {
-  //     navigation.navigate('Home');
-  //   } else if (isAuthenticated) {
-  //     navigation.navigate('Login');
-  //   } else {
-  //     navigation.navigate('Auth');
-  //   }
-  // }, [logged, isAuthenticated]);
 
   return (
     <Stack.Navigator 

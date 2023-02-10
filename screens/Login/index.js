@@ -35,6 +35,10 @@ function LoginScreen() {
   const [showError, setShowError] = useState('');
   const context = useContext(AuthContext);
 
+  const {
+    userData
+  } = context;
+
   useEffect(() => {
     (async () => {
       const compatible = await LocalAuthentication.hasHardwareAsync();
@@ -52,7 +56,7 @@ function LoginScreen() {
       console.info('logged: ', logged);
       context.setToken(logged.jwt);
       // return navigation.navigate('Home');
-      return navigation.navigate('UserProfile');
+      return navigation.navigate('UserProfile', { userData });
     } catch (err) {
       console.info('Error login: ', err);
       return setShowError('E-Mail o código no válidos');

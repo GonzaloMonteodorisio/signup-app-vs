@@ -7,6 +7,7 @@ import jwtDecode from 'jwt-decode';
 import NetInfo from '@react-native-community/netinfo';
 
 import { AuthProvider } from './AuthContext';
+import ButtonComponent from '../components/Button';
 
 import {
   storeData,
