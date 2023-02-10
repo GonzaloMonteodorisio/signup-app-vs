@@ -3,18 +3,22 @@ import React, {
   useEffect,
 } from 'react';
 
+import { Alert } from 'react-native';
+import { enableScreens } from 'react-native-screens';
+
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
+
 import * as LocalAuthentication from 'expo-local-authentication';
-import { enableScreens } from 'react-native-screens';
 
 import AuthContext from '../../providers/AuthContext';
 
 import LoginScreen from '../../screens/Login';
 import HomeScreen from '../../screens/Home';
 import AuthScreen from '../../screens/AuthScreen';
+import UserProfile from '../../screens/UserProfile';
 import MyApp from '../../screens/MyApp';
-import { Alert } from 'react-native';
+
 
 const Stack = createStackNavigator();
 
@@ -34,6 +38,10 @@ export const routesDefinition = [
   {
     name: 'MyApp',
     component: MyApp
+  },
+  {
+    name: 'UserProfile',
+    component: UserProfile
   }
 ];
 
@@ -56,15 +64,17 @@ function AppRoutes() {
   const context = useContext(AuthContext);
   const {
     logged,
-    // isAuthenticated
+    userData
   } = context;
 
   console.info('logged-AppRoutes', logged);
+  console.info('context-AppRoutes', context);
 
   useEffect(() => {
     if (logged) {
       loginAuthBiometric();
-      navigation.navigate('Home');
+      // navigation.navigate('Home');
+      navigation.navigate('UserProfile', { userData });
     } else {
       navigation.navigate('Login');
     }
@@ -81,7 +91,9 @@ function AppRoutes() {
   // }, [logged, isAuthenticated]);
 
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="MyApp">
+    <Stack.Navigator 
+      screenOptions={{ headerShown: false }} initialRouteName="MyApp"
+    >
       {routesDefinition.map((route) => (
         <Stack.Screen
           name={route.name}

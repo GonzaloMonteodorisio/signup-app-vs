@@ -51,7 +51,8 @@ function LoginScreen() {
       const logged = await validateEmailAndCode(email, code);
       console.info('logged: ', logged);
       context.setToken(logged.jwt);
-      return navigation.navigate('Home');
+      // return navigation.navigate('Home');
+      return navigation.navigate('UserProfile');
     } catch (err) {
       console.info('Error login: ', err);
       return setShowError('E-Mail o código no válidos');

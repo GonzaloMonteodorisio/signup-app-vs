@@ -39,6 +39,14 @@ function HomeScreen() {
     setEditLastName(true);
   };
 
+  const handleSaveFirstName = () => {
+    setEditFirstName(false);
+  };
+
+  const handleSaveLastName = () => {
+    setEditLastName(false);
+  };
+
   const {
     userData,
   } = context;
@@ -90,27 +98,32 @@ function HomeScreen() {
         style={styles.userImage}
       />
       {editFirstName ? (
-        <InputComponent
-          value={firstName}
-          onChangeText={(text) => setFirstName(text)}
-          style={styles.editNames}
-        />
+        <View>
+          <InputComponent
+            value={firstName}
+            onChangeText={(text) => setFirstName(text)}
+            style={styles.editNames}
+          />
+          <PressableComponent onPress={handleSaveFirstName}>
+            <TextComponent>Save</TextComponent>
+          </PressableComponent>
+        </View>
       ) : (
         <PressableComponent onPress={handleEditFirstName}>
           <TextComponent fontSize={30}>{firstName}</TextComponent>
         </PressableComponent>
       )}
       {editLastName ? (
-        <InputComponent
-          value={lastName}
-          onChangeText={
-            (text) => {
-              setLastName(text);
-              setEditLastName(false);
-            }
-          }
-          style={styles.editNames}
-        />
+        <View>
+          <InputComponent
+            value={lastName}
+            onChangeText={(text) => setLastName(text)}
+            style={styles.editNames}
+          />
+          <PressableComponent onPress={handleSaveLastName}>
+            <TextComponent>Save</TextComponent>
+          </PressableComponent>
+        </View>
       ) : (
         <PressableComponent onPress={handleEditLastName}>
           <TextComponent fontSize={30}>{lastName}</TextComponent>
@@ -127,5 +140,72 @@ function HomeScreen() {
     </View>
   );
 };
+
+// import React, { useState } from 'react';
+// import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native';
+
+// const HomeScreen = () => {
+//   const [firstName, setFirstName] = useState('John');
+//   const [lastName, setLastName] = useState('Doe');
+//   const [editFirstName, setEditFirstName] = useState(false);
+//   const [editLastName, setEditLastName] = useState(false);
+
+//   const handleEditFirstName = () => {
+//     setEditFirstName(true);
+//   };
+
+//   const handleEditLastName = () => {
+//     setEditLastName(true);
+//   };
+
+//   const handleSaveFirstName = () => {
+//     setEditFirstName(false);
+//   };
+
+//   const handleSaveLastName = () => {
+//     setEditLastName(false);
+//   };
+
+//   return (
+//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//       <Image
+//         source={{ uri: 'https://via.placeholder.com/100x100' }}
+//         style={{ width: 100, height: 100, borderRadius: 50 }}
+//       />
+//       {editFirstName ? (
+//         <View style={{ flexDirection: 'row' }}>
+//           <TextInput
+//             value={firstName}
+//             onChangeText={(text) => setFirstName(text)}
+//             style={{ borderWidth: 1, padding: 5, width: '80%' }}
+//           />
+//           <TouchableOpacity onPress={handleSaveFirstName}>
+//             <Text>Save</Text>
+//           </TouchableOpacity>
+//         </View>
+//       ) : (
+//         <TouchableOpacity onPress={handleEditFirstName}>
+//           <Text style={{ fontSize: 20 }}>{firstName}</Text>
+//         </TouchableOpacity>
+//       )}
+//       {editLastName ? (
+//         <View style={{ flexDirection: 'row' }}>
+//           <TextInput
+//             value={lastName}
+//             onChangeText={(text) => setLastName(text)}
+//             style={{ borderWidth: 1, padding: 5, width: '80%' }}
+//           />
+//           <TouchableOpacity onPress={handleSaveLastName}>
+//             <Text>Save</Text>
+//           </TouchableOpacity>
+//         </View>
+//       ) : (
+//         <TouchableOpacity onPress={handleEditLastName}>
+//           <Text style={{ fontSize: 20 }}>{lastName}</Text>
+//         </TouchableOpacity>
+//       )}
+//     </View>
+//   );
+// };
 
 export default HomeScreen;
