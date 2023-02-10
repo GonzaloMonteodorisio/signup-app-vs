@@ -24,7 +24,9 @@ i18next
           "login-label": "Inserte código recibido",
           "login-button-title": "Ingresar",
           "logged-out-message": "desloguado",
-          "user-label": "Usuario"
+          "user-label": "Usuario",
+          "default-first-name": "Nombre",
+          "default-last-name": "Apellido"
         }
       },
       en: {
@@ -40,7 +42,9 @@ i18next
           "login-label": "Insert received code",
           "login-button-title": "Enter",
           "logged-out-message": "logged-out",
-          "user-label": "User"
+          "user-label": "User",
+          "default-first-name": "FirstName",
+          "default-last-name": "LastName"
         }
       }
     }
