@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import Text from '../Text';
 import Pressable from '../Pressable';
-
+import { t } from 'i18next';
 import styles from './styles';
 
 function ContainerUserInfo({
@@ -37,7 +37,7 @@ function ContainerUserInfo({
             <Text 
               backgroundColor='yellow'
               color='#000'
-            >Edit photo</Text>
+            >{t("edit-profile-photo-text")}</Text>
           </Pressable>
         )}
       </ImageBackground>
@@ -82,7 +82,7 @@ function UserInfo({
             <Text 
               backgroundColor='#74f016'
               color='#000'
-            >Edit photo</Text>
+            >{t("edit-profile-photo-text")}</Text>
           </Pressable>
         )}
       </View>

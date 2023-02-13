@@ -21,6 +21,7 @@ import Text from '../../components/Text';
 import Toast from '../../components/Toast';
 
 import styles from './styles';
+import i18next from "i18next";
 import { t } from 'i18next';
 
 console.info('LocalAuthentication: ', LocalAuthentication);
@@ -33,6 +34,7 @@ function LoginScreen() {
   const [code, setCode] = useState('');
   const [sendCode, setSendCode] = useState(false);
   const [showError, setShowError] = useState('');
+  const [isEnglish, setIsEnglish] = useState(true);
   const context = useContext(AuthContext);
 
   const {
@@ -75,8 +77,31 @@ function LoginScreen() {
     }
   }
 
+  function changeLanguage() {
+    if (isEnglish) {
+      setIsEnglish(false);
+      i18next.changeLanguage('es');
+    }
+     else {
+      setIsEnglish(true);
+      i18next.changeLanguage('en');
+     }
+  }
+
   return (
     <View style={styles.container}>
+      <View style={styles.languageButton}>
+        <Button
+          title={isEnglish ? 'Español' : 'English'}
+          onPress={() => changeLanguage()}
+          backgroundColor="transparent"
+          textColor="#74f016"
+          bold
+          width='50%'
+          fontSize={25}
+          paddingVertical={20}
+        />
+      </View>
       <View style={styles.formData}>
         <View style={styles.formDataFields}>
           { !sendCode && (

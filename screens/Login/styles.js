@@ -24,6 +24,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     borderRadius: 20,
   },
+  languageButton: {
+    alignSelf: 'center'
+  }
 });
 
 export default styles;

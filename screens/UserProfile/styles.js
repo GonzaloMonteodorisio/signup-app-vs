@@ -24,6 +24,9 @@ const styles = StyleSheet.create({
   },
   signoutButton: {
     alignItems: 'center'
+  },
+  languageButton: {
+    alignSelf: 'center'
   }
 });
 

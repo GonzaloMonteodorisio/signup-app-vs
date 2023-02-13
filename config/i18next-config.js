@@ -28,7 +28,8 @@ i18next
           "default-first-name": "Nombre",
           "default-last-name": "Apellido",
           "biometrics-success": "Autenticación exitosa', 'Has iniciado sesión con biometría.",
-          "biometrics-no-success": "Autenticación biometrica fallida', 'No se encuentra activada, o se produjo un error."
+          "biometrics-no-success": "Autenticación biometrica fallida', 'No se encuentra activada, o se produjo un error.",
+          "edit-profile-photo-text": "Editar foto"
         }
       },
       en: {
@@ -48,7 +49,8 @@ i18next
           "default-first-name": "FirstName",
           "default-last-name": "LastName",
           "biometrics-success": "Authentication successful', 'You have logged in with biometrics.",
-          "biometrics-no-success": "Biometric authentication failed', 'It is not activated, or an error occurred."
+          "biometrics-no-success": "Biometric authentication failed', 'It is not activated, or an error occurred.",
+          "edit-profile-photo-text": "Edit photo"
         }
       }
     }

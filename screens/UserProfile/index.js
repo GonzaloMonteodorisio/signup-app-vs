@@ -22,7 +22,8 @@ import { useNavigation } from '@react-navigation/native';
 
 // import SocialNetworks from './components/SocialNetworks';
 import UserBasicInformation from './components/UserBasicInformation';
-import ButtonComponent from '../../components/Button';
+import Button from '../../components/Button';
+import i18next from "i18next";
 import { t } from 'i18next';
 import { clearAllLocalStorage } from '../../StorageData';
 import styles from './styles';
@@ -34,6 +35,7 @@ function UserProfile({
   const [userInfo, setUserInfo] = useState();
   const [loading, setLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isEnglish, setIsEnglish] = useState(true);
 
   const navigation = useNavigation();
 
@@ -118,6 +120,17 @@ function UserProfile({
     navigation.navigate('Login');
   }
 
+  function changeLanguage() {
+    if (isEnglish) {
+      setIsEnglish(false);
+      i18next.changeLanguage('es');
+    }
+     else {
+      setIsEnglish(true);
+      i18next.changeLanguage('en');
+     }
+  }
+
   useEffect(() => {
     fetchUserInfo();
   }, [_id]);
@@ -127,6 +140,18 @@ function UserProfile({
   return (
     <Screen>
       <View style={styles.container}>
+        <View style={styles.languageButton}>
+          <Button
+            title={isEnglish ? 'Español' : 'English'}
+            onPress={() => changeLanguage()}
+            backgroundColor="transparent"
+            textColor="#74f016"
+            bold
+            width='50%'
+            fontSize={25}
+            paddingVertical={20}
+          />
+        </View>
         <View>
           <UserInfo
             profilePhoto={userInfo.profilePhoto}
@@ -146,7 +171,7 @@ function UserProfile({
           />
         </View>
         <View style={styles.signoutButton}>
-          <ButtonComponent
+          <Button
             title={t('sign-out')}
             onPress={logout}
             width='50%'
