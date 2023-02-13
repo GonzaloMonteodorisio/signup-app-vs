@@ -7,8 +7,6 @@ import {
 import { useNavigation } from '@react-navigation/native';
 
 import Text from '../Text';
-// import Lifes from '../Lifes';
-// import SVGLocal from '../SVGLocal';
 import Pressable from '../Pressable';
 
 import styles from './styles';
@@ -53,14 +51,11 @@ function ContainerUserInfo({
 }
 
 function UserInfo({
-  // showLifes = false,
   rowAligned = false,
   displayName = '',
   profilePhoto = 'https://static.wikia.nocookie.net/naruto-shippuden-latino/images/7/75/Naruto_Uzumaki_HD.png/revision/latest?cb=20130321210236&path-prefix=es',
   profilePhotoSize = 136,
   // coverPhoto = 'https://res.cloudinary.com/practicaldev/image/fetch/s--XAiWRSsE--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/2rukvu3dz6ztgqrlxsq8.png',
-  // score = 0,
-  // lifes = 0,
   // editableCover,
   editablePhoto,
   onPressEditablePhoto = () => {},
@@ -85,7 +80,6 @@ function UserInfo({
             uri: profilePhoto,
           }}
         />
-        {/* {showLifes && <Lifes paddingbottom absolute>{`${lifes}`}</Lifes>} */}
         {editablePhoto && (
           <Pressable
             style={styles(profilePhotoSize, rowAligned).editableProfilePhoto}

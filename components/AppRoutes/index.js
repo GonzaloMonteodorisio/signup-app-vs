@@ -63,7 +63,6 @@ function AppRoutes() {
   useEffect(() => {
     if (logged) {
       loginAuthBiometric();
-      // navigation.navigate('Home');
       navigation.navigate('UserProfile', { userData });
     } else {
       navigation.navigate('Login');
@@ -81,7 +80,6 @@ function AppRoutes() {
           key={`route-${route.name}`}
           options = {{
             logged,
-            // isAuthenticated
           }}
         />
       ))}
