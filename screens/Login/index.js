@@ -91,7 +91,7 @@ function LoginScreen() {
               <Button
                 title={t("login-button")}
                 onPress={() => onSendCode()}
-                backgroundColor="#ffcc00"
+                backgroundColor="#74f016"
                 textColor="#000000"
                 bold
                 width='50%'
@@ -110,7 +110,7 @@ function LoginScreen() {
               <Button
                 title={`${t("login-button-title")}`}
                 onPress={() => onLogin()}
-                backgroundColor="#ffcc00"
+                backgroundColor="#74f016"
                 textColor="#000000"
                 bold
                 width='50%'

@@ -55,11 +55,8 @@ function UserInfo({
   displayName = '',
   profilePhoto = 'https://static.wikia.nocookie.net/naruto-shippuden-latino/images/7/75/Naruto_Uzumaki_HD.png/revision/latest?cb=20130321210236&path-prefix=es',
   profilePhotoSize = 136,
-  // coverPhoto = 'https://res.cloudinary.com/practicaldev/image/fetch/s--XAiWRSsE--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/2rukvu3dz6ztgqrlxsq8.png',
-  // editableCover,
   editablePhoto,
   onPressEditablePhoto = () => {},
-  // onPressEditableCover = () => {},
   _id,
   fontSize = 32,
 }) {
@@ -67,9 +64,6 @@ function UserInfo({
   return (
     <ContainerUserInfo
       style={styles(profilePhotoSize, rowAligned).container}
-      // cover={coverPhoto}
-      // editable={editableCover}
-      // onPressEditableCover={onPressEditableCover}
       profilePhotoSize
       rowAligned
     >
@@ -86,7 +80,7 @@ function UserInfo({
             onPress={onPressEditablePhoto}
           >
             <Text 
-              backgroundColor='yellow'
+              backgroundColor='#74f016'
               color='#000'
             >Edit photo</Text>
           </Pressable>
@@ -96,7 +90,6 @@ function UserInfo({
         fontSize={fontSize}
         bold
         backgroundColor='transparent'
-        // width={coverPhoto ? '100%' : undefined}
         textAlign="center"
         padding={1}
         onPress={() => navigation.navigate('UserProfile', { _id })}

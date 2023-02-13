@@ -16,7 +16,7 @@ import AuthContext from '../../providers/AuthContext';
 import LoginScreen from '../../screens/Login';
 import UserProfile from '../../screens/UserProfile';
 import MyApp from '../../screens/MyApp';
-
+import { t } from 'i18next';
 
 const Stack = createStackNavigator();
 
@@ -39,9 +39,9 @@ const loginAuthBiometric = async () => {
   try {
     const result = await LocalAuthentication.authenticateAsync();
     if (result.success) {
-      Alert.alert('Autenticación exitosa', 'Has iniciado sesión con biometría.');
+      Alert.alert(`${t("biometrics-success")}`);
     } else {
-      Alert.alert('Autenticación biometrica fallida', 'No se encuentra activada, o se produjo un error.');
+      Alert.alert(`${t("biometrics-no-success")}`);
     }
   } catch (e) {
     Alert.alert('Error', e.message);

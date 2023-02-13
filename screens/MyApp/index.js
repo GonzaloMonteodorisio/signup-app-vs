@@ -24,14 +24,6 @@ function MyApp({ onLayout }) {
 
   if (!userData) return null;
 
-  async function logout() {
-    clearAllLocalStorage();
-    setIsLoggedIn(false);
-    // setUserData();
-    console.info('desloguado');
-    navigation.navigate('Login');
-  }
-
   return (
     <View style={styles.container} onLayout={onLayout}>
       <Text>My App</Text>

@@ -114,7 +114,6 @@ function UserProfile({
   async function logout() {
     clearAllLocalStorage();
     setIsLoggedIn(false);
-    // setUserData();
     console.info(`${t("logged-out-message")}`);
     navigation.navigate('Login');
   }
@@ -127,41 +126,38 @@ function UserProfile({
   console.info('UserProfile userInfo: ', userInfo);
   return (
     <Screen>
-      <UserInfo
-        // coverPhoto={userInfo.coverPhoto}
-        profilePhoto={userInfo.profilePhoto}
-        displayName={`${userInfo.firstName} ${userInfo.lastName}`}
-        editablePhoto={!_id}
-        // editableCover={!_id}
-        editableFirstName={!_id}
-        editableLastName={!_id}
-        onPressEditablePhoto={() => { pickImage('photo'); }}
-        // onPressEditableCover={() => { pickImage('cover'); }}
-      />
       <View style={styles.container}>
-        {/* <SocialNetworks
-          onConfirm={(sn, value) => onChangeUserInfo(sn, value)}
-          github={userInfo?.extra?.github}
-          telegram={userInfo?.extra?.telegram}
-          twitter={userInfo?.extra?.twitter}
-          editable={!_id}
-        /> */}
-        <UserBasicInformation
-          firstName={userInfo.firstName}
-          lastName={userInfo.lastName}
-          onConfirm={(sn, value) => onChangeUserInfo(sn, value, true)}
-          editable={!_id}
-        />
-        <ButtonComponent
-          title={t('sign-out')}
-          onPress={logout}
-          width='50%'
-          fontSize={20}
-          textColor='#000'
-          bold
-        />
+        <View>
+          <UserInfo
+            profilePhoto={userInfo.profilePhoto}
+            displayName={`${userInfo.firstName} ${userInfo.lastName}`}
+            editablePhoto={!_id}
+            editableFirstName={!_id}
+            editableLastName={!_id}
+            onPressEditablePhoto={() => { pickImage('photo'); }}
+          />
+        </View>
+        <View>
+          <UserBasicInformation
+            firstName={userInfo.firstName}
+            lastName={userInfo.lastName}
+            onConfirm={(sn, value) => onChangeUserInfo(sn, value, true)}
+            editable={!_id}
+          />
+        </View>
+        <View style={styles.signoutButton}>
+          <ButtonComponent
+            title={t('sign-out')}
+            onPress={logout}
+            width='50%'
+            fontSize={20}
+            backgroundColor='#74f016'
+            textColor='#000'
+            bold
+          />
+        </View>
+        {loading && <Loading />}
       </View>
-      {loading && <Loading />}
     </Screen>
   );
 }
